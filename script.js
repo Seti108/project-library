@@ -185,7 +185,11 @@ const books = [
   }
 ]
 
+// Selectors
+
 const container = document.querySelector('.container');
+const linkSortByDate = document.querySelector('#date');
+
 
 // Display all the cards on page load
 
@@ -193,6 +197,7 @@ const container = document.querySelector('.container');
 // A function that takes an array as an argument and loops over every entry and produces the html for the card
 
 const renderBooks = function (booksArray){
+  container.innerHTML = "";
   booksArray.forEach(book => {
     // Make a variable that contains the markup and variables
     let html = `
@@ -238,7 +243,27 @@ renderBooks(books);
 
 // Add an eventlistener that listen for clicks on "Sort by date"
 
-//Add anothter eventlistener to reverse the order on second click, also update the chevron upside down
+let isSortedToggle = false;
 
-//Write a function that sorts the array by date
+//Write a function that sorts an array of objects by year, and reverses it
+
+linkSortByDate.addEventListener('click',()=> {
+  if(isSortedToggle) {
+    books.sort((a, b) => b.year - a.year);
+    renderBooks(books);
+    isSortedToggle = false;
+    document.querySelector('#nav-chevron').classList.toggle('.upside-down');
+  } else {
+    books.sort((a, b) => a.year - b.year);
+    renderBooks(books);
+    isSortedToggle = true;
+    document.querySelector('#nav-chevron').classList.toggle('.upside-down');
+  }
+  
+} )
+
+
+
+
+
 
