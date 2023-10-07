@@ -184,19 +184,39 @@ const books = [
     image: './books-images/unknown.jpg'
   }
 ]
+let modifiedBooks = [...books];
 
 // Selectors
-
 const container = document.querySelector('.container');
 const linkSortByDate = document.querySelector('#date');
+const linkSortByRating = document.querySelector('#rating');
+const navChevronDate = document.querySelector('#nav-chevron-date');
+const navChevronRating = document.querySelector('#nav-chevron-rating');
+const genreDropdown = document.querySelector('#genre-dropdown');
+
+// Globals
+let dateIsSorted;
+let ratingIsSorted;
+const uniqueGenres = new Set();
 
 
 // Display all the cards on page load
 
+renderBooks(books);
+
+// A function to reset all filters/sortings
+
+const init = ()=> {
+  navChevronDate.classList.add('nav-chevron-hide');
+  navChevronRating.classList.add('nav-chevron-hide');
+  genreDropdown.value = 'no genre';
+  renderBooks(books);
+}
+
 //Build a function that renders the cards on the page
 // A function that takes an array as an argument and loops over every entry and produces the html for the card
 
-const renderBooks = function (booksArray){
+function renderBooks(booksArray){
   container.innerHTML = "";
   booksArray.forEach(book => {
     // Make a variable that contains the markup and variables
@@ -230,40 +250,107 @@ const renderBooks = function (booksArray){
 
 // - Your page should display all of the elements (and their information) in the chosen array when the website is loaded
 
-renderBooks(books);
 
-// - Your page should have at least one `filter`, e.g. on genre or cuisine type
 
-// Write a function that filters the genre
+//  TASK- Your page should have at least one `filter`, e.g. on genre or cuisine type
 
-// - Your page should be able to `sort` on at least one property, e.g.
+// Populate the "Genre dropdown" with the genres in the array (no duplicates), used Set() for this
+
+books.forEach((book) => {
+  if(uniqueGenres.has(book.genre)){
+    return;
+  } else {
+    let html = `
+    <option value="${book.genre}">${book.genre}</option>
+    `
+    genreDropdown.innerHTML += html;
+    uniqueGenres.add(book.genre);
+  }
+})
+
+//Fist, add an event listener to listen to the change of "value" in dropdown
+// Add a function that resets all chevrons
+const resetChevrons = ()=> {
+  navChevronDate.classList.add('nav-chevron-hide');
+  navChevronRating.classList.add('nav-chevron-hide');
+  toggleChevron(navChevronRating, false);
+  toggleChevron(navChevronDate, false);
+}
+genreDropdown.addEventListener('change', (e)=> {
+  resetChevrons();
+  dateIsSorted = false;
+  ratingIsSorted = false;
+  if(genreDropdown.value === 'no genre'){
+    renderBooks(books);
+  } else {
+    //Create a function that filters by the selected genre
+    modifiedBooks = books.filter((selectedGenre)=> {return selectedGenre.genre === genreDropdown.value});
+    renderBooks(modifiedBooks);
+  }
+ 
+})
+
+
+// - TASK Your page should be able to `sort` on at least one property, e.g.
 //   for books:
 //     - from newest to oldest and vice versa
 //     - from the highest to lowest rating and vice versa
 
-// Add an eventlistener that listen for clicks on "Sort by date"
+// A function to sort by date and rating (takes argument of array and a boolean value to reverse the array)
 
-let isSortedToggle = false;
+const sortByAttribute = function(array, attribute, reverse){
+  if (reverse) {
+    array.sort((a, b) => a[attribute] - b[attribute]);
+  } else {
+    array.sort((a, b) => b[attribute] - a[attribute]);
+  }
+  renderBooks(modifiedBooks);
+}
 
-//Write a function that sorts an array of objects by year, and reverses it
+// A function that toggles the chevron up/down for ease of use in the program
+
+const toggleChevron = function(chevron, toggle) {
+  if (toggle){
+    chevron.src = '/project-library/books-images/chevron-up-icon.png';
+  } else {
+    chevron.src = '/project-library/books-images/chevron-down-icon.png';
+  }
+}
+
+//An event listener that sorts an array of objects by year with possibility to reverse it on additional click
 
 linkSortByDate.addEventListener('click',()=> {
-  if(isSortedToggle) {
-    books.sort((a, b) => b.year - a.year);
-    renderBooks(books);
-    isSortedToggle = false;
-    document.querySelector('#nav-chevron').classList.toggle('.upside-down');
+  toggleChevron(navChevronRating, false);
+  ratingIsSorted = false;
+  navChevronDate.classList.remove('nav-chevron-hide');
+  navChevronRating.classList.add('nav-chevron-hide');
+  if(dateIsSorted) {
+    sortByAttribute(modifiedBooks, "year", true);
+    navChevronDate.src = '/project-library/books-images/chevron-down-icon.png';
+    dateIsSorted = false;
   } else {
-    books.sort((a, b) => a.year - b.year);
-    renderBooks(books);
-    isSortedToggle = true;
-    document.querySelector('#nav-chevron').classList.toggle('.upside-down');
+    sortByAttribute(modifiedBooks, "year", false);
+    navChevronDate.src = '/project-library/books-images/chevron-up-icon.png';
+    dateIsSorted = true;
   }
-  
 } )
 
+//An event listener that sorts an array of objects by rating with possiblity to reverse it on additional click
 
-
-
+linkSortByRating.addEventListener('click',()=> {
+  toggleChevron(navChevronDate, false);
+  dateIsSorted = false;
+  navChevronDate.classList.add('nav-chevron-hide');
+  navChevronRating.classList.remove('nav-chevron-hide');
+  if(ratingIsSorted) {
+    sortByAttribute(modifiedBooks, "rating", true);
+    toggleChevron(navChevronRating, false);
+    ratingIsSorted = false;
+  } else {
+    sortByAttribute(modifiedBooks, "rating", false);
+    toggleChevron(navChevronRating, true);
+    ratingIsSorted = true;
+  }
+} )
 
 

@@ -15,34 +15,19 @@
   <img id="logo"src="/project-library/books-images/cozy-place-logo.png" alt="cozy owl library logo">
   <h1>CozyOwl Library</h1>
   <nav>
-    <span id="all" onclick="renderBooks(books)">Show all books</span>
-    <span id="date">Sort by date <img src="/project-library/books-images/chevron-down-icon.png" id="nav-chevron" alt="chevron"> </span>
-    <span id="genre">Sort by genre</span>
-    <span id="rating">Sory by rating</span>
+    <span id="all" class="nav-add-pointer" onclick="init();">Show all books</span>
+    <label for="genres">Filter by genre:</label>
+    <select name="genres" id="genre-dropdown" class="nav-add-pointer">
+      <option value="no genre">Select genre</option>
+    </select>
+    <!-- <span id="genre">
+      Filter by genre: 
+    </span> -->
+    <span id="date" class="nav-add-pointer">Sort by date <img src="/project-library/books-images/chevron-down-icon.png" class="nav-chevron nav-chevron-hide" id="nav-chevron-date" alt="chevron"> </span>
+    <span id="rating" class="nav-add-pointer">Sory by rating <img src="/project-library/books-images/chevron-down-icon.png" class="nav-chevron nav-chevron-hide" id="nav-chevron-rating" alt="chevron"></span>
   </nav>
   <main>
     <section class="container">
-      <!-- <div class="card">
-        <div class="text">
-          <div class="title">
-            <span>Test asdasdasdasd</span>
-          </div>
-          <div class="author-year flex-space-apart">
-            <span class="author">Something</span>
-            <span class="year">2009</span>
-          </div>
-          <div class="description">
-            <p>A dystopian novel set in a seemingly perfect society where young Jonas discovers the dark truth beneath the surface.</p>
-          </div>
-          <div class="flex-space-apart">
-            <p class="genre">Horror</p>
-            <span class="rating">⭐ 4.5/5</span>
-          </div>
-        </div>
-        <div class="image">
-          <img src="/project-library/books-images/1984.jpg" alt="photo of book">
-        </div>
-      </div> -->
     </section>
   </main>
 </body>
