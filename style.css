@@ -3,7 +3,7 @@ html {
 }
 body {
     /* max-width: 100vw; */
-    background-image: url(/books-images/background-owl.jpg);
+    background-image: url(./books-images/background-owl.jpg);
     font-family: 'Crimson Text', serif;
     letter-spacing: 0.03em;
     background-repeat: no-repeat;

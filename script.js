@@ -184,6 +184,8 @@ const books = [
     image: './books-images/unknown.jpg'
   }
 ]
+
+//As sort modifies the array, I create a copy to be able to display both the original and a sorted array
 let modifiedBooks = [...books];
 
 // Selectors
@@ -195,10 +197,12 @@ const navChevronRating = document.querySelector('#nav-chevron-rating');
 const genreDropdown = document.querySelector('#genre-dropdown');
 
 // Globals
+// I needed some variables to indicate if the array was sorted (feedback welcome)
 let dateIsSorted;
 let ratingIsSorted;
 const uniqueGenres = new Set();
 
+// TASK - Your page should display all of the elements (and their information) in the chosen array when the website is loaded
 
 // Display all the cards on page load
 
@@ -214,7 +218,7 @@ const init = ()=> {
 }
 
 //Build a function that renders the cards on the page
-// A function that takes an array as an argument and loops over every entry and produces the html for the card
+// A function that takes an array as an argument and loops over every entry and produces the html for the cards
 
 function renderBooks(booksArray){
   container.innerHTML = "";
@@ -248,9 +252,6 @@ function renderBooks(booksArray){
   });
 }
 
-// - Your page should display all of the elements (and their information) in the chosen array when the website is loaded
-
-
 
 //  TASK- Your page should have at least one `filter`, e.g. on genre or cuisine type
 
@@ -268,8 +269,8 @@ books.forEach((book) => {
   }
 })
 
-//Fist, add an event listener to listen to the change of "value" in dropdown
-// Add a function that resets all chevrons
+//Add an event listener to listen to the change of "value" in dropdown
+// Add a function that resets all chevrons (icons to indicate sort order)
 const resetChevrons = ()=> {
   navChevronDate.classList.add('nav-chevron-hide');
   navChevronRating.classList.add('nav-chevron-hide');
@@ -296,7 +297,7 @@ genreDropdown.addEventListener('change', (e)=> {
 //     - from newest to oldest and vice versa
 //     - from the highest to lowest rating and vice versa
 
-// A function to sort by date and rating (takes argument of array and a boolean value to reverse the array)
+// A function to sort by date and rating (attribute) (takes argument of a boolean value to reverse the array)
 
 const sortByAttribute = function(array, attribute, reverse){
   if (reverse) {
@@ -317,7 +318,7 @@ const toggleChevron = function(chevron, toggle) {
   }
 }
 
-//An event listener that sorts an array of objects by year with possibility to reverse it on additional click
+//An event listener that sorts an array of objects by "year" with possibility to reverse it on additional click
 
 linkSortByDate.addEventListener('click',()=> {
   toggleChevron(navChevronRating, false);
@@ -335,7 +336,7 @@ linkSortByDate.addEventListener('click',()=> {
   }
 } )
 
-//An event listener that sorts an array of objects by rating with possiblity to reverse it on additional click
+//An event listener that sorts an array of objects by "rating" with possiblity to reverse it on additional click
 
 linkSortByRating.addEventListener('click',()=> {
   toggleChevron(navChevronDate, false);
