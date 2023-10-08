@@ -312,9 +312,9 @@ const sortByAttribute = function(array, attribute, reverse){
 
 const toggleChevron = function(chevron, toggle) {
   if (toggle){
-    chevron.src = '/project-library/books-images/chevron-up-icon.png';
+    chevron.src = './books-images/chevron-up-icon.png';
   } else {
-    chevron.src = '/project-library/books-images/chevron-down-icon.png';
+    chevron.src = './books-images/chevron-down-icon.png';
   }
 }
 
@@ -327,11 +327,11 @@ linkSortByDate.addEventListener('click',()=> {
   navChevronRating.classList.add('nav-chevron-hide');
   if(dateIsSorted) {
     sortByAttribute(modifiedBooks, "year", true);
-    navChevronDate.src = '/project-library/books-images/chevron-down-icon.png';
+    toggleChevron(navChevronDate, false);
     dateIsSorted = false;
   } else {
     sortByAttribute(modifiedBooks, "year", false);
-    navChevronDate.src = '/project-library/books-images/chevron-up-icon.png';
+    toggleChevron(navChevronDate, true);
     dateIsSorted = true;
   }
 } )
