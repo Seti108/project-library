@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 html {
     font-size: 16px;
 }
@@ -14,6 +21,8 @@ body::after {
     content: "";
     position: absolute;
     inset: 0 0 0 0;
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(black));
+    background: -o-linear-gradient(rgba(0, 0, 0, 0.3), black);
     background: linear-gradient(rgba(0, 0, 0, 0.3), black);
     z-index: -1;
 
@@ -23,7 +32,8 @@ body::after {
     border: 0;
     margin:0;
     padding: 0;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 img {
@@ -61,7 +71,10 @@ nav {
     font-weight: 400;
     background-color: rgba(0, 0, 0, 0.8);
     padding: 1rem 0;
-    user-select: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 }
 
 nav span {
@@ -71,7 +84,8 @@ nav span {
 .nav-chevron {
     display: inline-block;
     width: 12px;
-    filter: invert();
+    -webkit-filter: invert();
+            filter: invert();
 }
 
 .nav-add-pointer {
@@ -86,8 +100,11 @@ nav span {
 
 .container {
     padding: 2rem 10%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
     gap: 2rem;
     background-color: rgba(0, 0, 0, 0.5);
 }
@@ -95,27 +112,33 @@ nav span {
 
 /* CARD */
 .card {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     position: relative;
     background-color: #f3f3f3;
-    flex-basis: 30%;
+    -ms-flex-preferred-size: 30%;
+        flex-basis: 30%;
     color: rgb(9, 9, 9);
     border-radius: 20px;
     min-width: 350px;
 }
 
 .text {
-    flex-basis: 70%;
+    -ms-flex-preferred-size: 70%;
+        flex-basis: 70%;
     padding: 1rem;
 }
 
 .image {
-    flex-basis: 30%;
+    -ms-flex-preferred-size: 30%;
+        flex-basis: 30%;
 }
 
 .image img {
     height: 100%;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
     border-top-right-radius: 20px;;
     border-bottom-right-radius: 20px;;
 }
@@ -144,13 +167,21 @@ nav span {
     background-color: #6A2D4E;
     color: #f3f3f3;
     padding: 0.5rem 1rem;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
     width: fit-content;
     border-radius: 20px;
 }
 
 .flex-space-apart {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     margin-bottom: 0.5rem;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
