@@ -358,7 +358,3 @@ linkSortByRating.addEventListener('click',()=> {
     ratingIsSorted = true;
   }
 } )
-
-
-console.log(dateIsSorted);
-console.log(ratingIsSorted);

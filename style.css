@@ -140,7 +140,8 @@ nav span {
 }
 
 .image-container img {
-    height:100%;
+    min-height:100%;
+    min-width: 100%;
     -o-object-fit: cover;
        object-fit: cover;
     border-top-right-radius: 20px;
