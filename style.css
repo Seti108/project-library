@@ -136,11 +136,10 @@ nav span {
 }
 
 .image img {
-    height: 100%;
     -o-object-fit: cover;
        object-fit: cover;
-    border-top-right-radius: 20px;;
-    border-bottom-right-radius: 20px;;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .title {
