@@ -198,8 +198,8 @@ const genreDropdown = document.querySelector('#genre-dropdown');
 
 // Globals
 // I needed some variables to indicate if the array was sorted (feedback welcome)
-let dateIsSorted;
-let ratingIsSorted;
+let dateIsSorted = false;
+let ratingIsSorted = false;
 const uniqueGenres = new Set();
 
 // TASK - Your page should display all of the elements (and their information) in the chosen array when the website is loaded
@@ -216,6 +216,7 @@ const init = ()=> {
   genreDropdown.value = 'no genre';
   renderBooks(books);
   modifiedBooks = books;
+  console.log(books);
 }
 
 //Build a function that renders the cards on the page
@@ -359,3 +360,5 @@ linkSortByRating.addEventListener('click',()=> {
 } )
 
 
+console.log(dateIsSorted);
+console.log(ratingIsSorted);
