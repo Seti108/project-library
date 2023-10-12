@@ -215,6 +215,7 @@ const init = ()=> {
   navChevronRating.classList.add('nav-chevron-hide');
   genreDropdown.value = 'no genre';
   renderBooks(books);
+  modifiedBooks = books;
 }
 
 //Build a function that renders the cards on the page
@@ -243,7 +244,9 @@ function renderBooks(booksArray){
       </div>
     </div>
     <div class="image">
-      <img src="${book.image}" alt="photo of book">
+      <div class="image-container">
+        <img src="${book.image}" alt="photo of book">
+      </div>
     </div>
   </div>
     `
@@ -283,6 +286,7 @@ genreDropdown.addEventListener('change', (e)=> {
   ratingIsSorted = false;
   if(genreDropdown.value === 'no genre'){
     renderBooks(books);
+    modifiedBooks = books;
   } else {
     //Create a function that filters by the selected genre
     modifiedBooks = books.filter((selectedGenre)=> {return selectedGenre.genre === genreDropdown.value});

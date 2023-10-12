@@ -131,11 +131,16 @@ nav span {
 }
 
 .image {
+    flex-basis: 30%;
     -ms-flex-preferred-size: 30%;
-        flex-basis: 30%;
 }
 
-.image img {
+.image-container {
+    height: 100%;
+}
+
+.image-container img {
+    height:100%;
     -o-object-fit: cover;
        object-fit: cover;
     border-top-right-radius: 20px;
